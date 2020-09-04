@@ -7,6 +7,11 @@ const app = express();
 
 // app midddleware
 app.use(express.json());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  next();
+});
 
 //db config
 const user = "admin";
@@ -21,7 +26,13 @@ mongoose.connect(connectURL, {
 
 // api endpoints
 app.get("/", (req, res) => {
-  res.status(200).send("hello world");
+  Group.find((err, document) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(document);
+    }
+  });
 });
 
 app.post("/", (req, res) => {
