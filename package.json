@@ -10,7 +10,9 @@
   "author": "bharathprabha",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.10.2"
+    "mongoose": "^5.10.2",
+    "pusher": "^3.0.1"
   }
 }
